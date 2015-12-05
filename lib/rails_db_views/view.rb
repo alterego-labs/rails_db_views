@@ -9,7 +9,8 @@ class RailsDbViews::View < RailsDbViews::DatabaseSymbol
     "DROP VIEW #{name}"
   end
 
-  def handle_error_on_drop
-    puts "WARNING: DROP VIEW #{name}... ERROR"
+  def handle_error_on_drop(error_message)
+    puts "WARNING: DROP VIEW #{name}"
+    puts "Original error message: #{error_message}"
   end
 end

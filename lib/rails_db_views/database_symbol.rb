@@ -82,8 +82,11 @@ class RailsDbViews::DatabaseSymbol
 
     begin
       ActiveRecord::Base.connection.execute(drop_sql)
-    #rescue ActiveRecord::ActiveRecordError => e #Probably because the symbol doesn't exists yet.
-    #  handle_error_on_drop
+    # I don't fully understand why catching ActiveRecordError was commented
+    # First time when I ran `rake db:migrate` I got the error that said me 'View blabla does not exists'
+    # and migration process was crashed.
+    rescue ActiveRecord::ActiveRecordError => e #Probably because the symbol doesn't exists yet.
+      handle_error_on_drop(e.message)
     end
 
     self.status = Status::LOADED
@@ -98,7 +101,7 @@ class RailsDbViews::DatabaseSymbol
     raise NotImplementedError, "DatabaseSymbol should not be instanciated"
   end
 
-  def handle_error_on_drop
+  def handle_error_on_drop(error_message)
     raise NotImplementedError, "DatabaseSymbol should not be instanciated"
   end
 

@@ -1,7 +1,7 @@
 class RailsDbViews::Function < RailsDbViews::DatabaseSymbol
   def create_sql
-    puts "CREATE OR REPLACE FUNCTION #{name}..."
-    "CREATE OR REPLACE FUNCTION #{name} #{sql_content}"
+    puts "CREATE FUNCTION #{name}..."
+    "CREATE FUNCTION #{name}#{sql_content}"
   end
 
   def drop_sql
@@ -9,7 +9,8 @@ class RailsDbViews::Function < RailsDbViews::DatabaseSymbol
     "DROP FUNCTION #{name}"
   end
 
-  def handle_error_on_drop
-    puts "WARNING: DROP FUNCTION #{name}... ERROR"
+  def handle_error_on_drop(error_message)
+    puts "WARNING: DROP FUNCTION #{name}"
+    puts "Original error message: #{error_message}"
   end
 end
