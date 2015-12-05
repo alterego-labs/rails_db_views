@@ -44,13 +44,13 @@ namespace :db do
   end
 end
 
-require 'rake/hooks'
+#require 'rake/hooks'
 
-before("db:migrate"){ Rake::Task['db:drop_views'].invoke }
-before("db:migrate"){ Rake::Task['db:drop_functions'].invoke }
-before("db:migrate"){ Rake::Task['db:create_functions'].invoke }
-after("db:migrate"){ Rake::Task['db:create_views'].invoke }
+#before("db:migrate"){ Rake::Task['db:drop_views'].invoke }
+#before("db:migrate"){ Rake::Task['db:drop_functions'].invoke }
+#before("db:migrate"){ Rake::Task['db:create_functions'].invoke }
+#after("db:migrate"){ Rake::Task['db:create_views'].invoke }
 
-before("db:rollback"){ Rake::Task['db:drop_views'].invoke }
-before("db:rollback"){ Rake::Task['db:create_functions'].invoke }
-after("db:rollback"){ Rake::Task['db:create_views'].invoke }
+#before("db:rollback"){ Rake::Task['db:drop_views'].invoke }
+#before("db:rollback"){ Rake::Task['db:create_functions'].invoke }
+#after("db:rollback"){ Rake::Task['db:create_views'].invoke }
