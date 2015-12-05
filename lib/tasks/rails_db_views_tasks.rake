@@ -47,6 +47,7 @@ end
 require 'rake/hooks'
 
 before("db:migrate"){ Rake::Task['db:drop_views'].invoke }
+before("db:migrate"){ Rake::Task['db:drop_functions'].invoke }
 before("db:migrate"){ Rake::Task['db:create_functions'].invoke }
 after("db:migrate"){ Rake::Task['db:create_views'].invoke }
 
